@@ -171,7 +171,7 @@
     <meta http-equiv="cache-control" content="max-age=60,private">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Pi-hole<?php echo $hostname ? " - " . $hostname : "" ?></title>
+    <title>Lazarus Firewall Admin Console</title>
 
     <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -238,9 +238,9 @@ if($auth) {
         <!-- Logo -->
         <a href="index.php" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini">P<strong>h</strong></span>
+            <span class="logo-mini"></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg">Pi-<strong>hole</strong></span>
+            <span class="logo-lg"><b>Lazarus&nbsp;</b><b>Firewall</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -266,43 +266,27 @@ if($auth) {
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <img src="img/logo.svg" class="user-image" alt="Pi-hole logo" style="border-radius: 0" width="25" height="25">
-                            <span class="hidden-xs">Pi-hole</span>
+                            <span class="hidden-xs">Lazarus</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="img/logo.svg" alt="Pi-hole Logo" style="border: 0" width="90" height="90">
                                 <p>
-                                    Open Source Ad Blocker
-                                    <small>Designed For Raspberry Pi</small>
+                                    Lazarus Network Firewall
+                                    <small>Designed by Lazarus Network</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
                                 <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a class="btn-link" href="https://github.com/pi-hole" rel="noopener" target="_blank">GitHub</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a class="btn-link" href="https://pi-hole.net/" rel="noopener" target="_blank">Website</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a class="btn-link" href="https://github.com/pi-hole/pi-hole/releases" rel="noopener" target="_blank">Updates</a>
-                                    </div>
                                     <div id="sessiontimer" class="col-xs-12 text-center">
                                         <strong>Session is valid for <span id="sessiontimercounter"><?php if($auth && strlen($pwhash) > 0){echo $maxlifetime;}else{echo "0";} ?></span></strong>
                                     </div>
                                 </div>
                             </li>
                             <!-- Menu Footer -->
-                            <li class="user-footer">
-                                <!-- PayPal -->
-                                <div class="text-center">
-                                    <a href="https://pi-hole.net/donate/" rel="noopener" target="_blank">
-                                        <img src="img/donate.gif" alt="Donate" width="147" height="47">
-                                    </a>
-                                </div>
-                            </li>
+                            <li class="user-footer"></li>
                         </ul>
                     </li>
                 </ul>
@@ -448,16 +432,16 @@ if($auth) {
                     </li>
                   </ul>
                 </li>
-                <!-- Whitelist -->
+                <!-- Denylist -->
                 <li<?php if($scriptname === "whitelist"){ ?> class="active"<?php } ?>>
                     <a href="groups-domains.php?type=white">
-                        <i class="fa fa-fw fa-check-circle "></i> <span>Whitelist</span>
+                        <i class="fa fa-fw fa-check-circle "></i> <span>Allowlist</span>
                     </a>
                 </li>
-                <!-- Blacklist -->
+                <!-- Denylist -->
                 <li<?php if($scriptname === "blacklist"){ ?> class="active"<?php } ?>>
                     <a href="groups-domains.php?type=black">
-                        <i class="fa fa-fw fa-ban"></i> <span>Blacklist</span>
+                        <i class="fa fa-fw fa-ban"></i> <span>Denylist</span>
                     </a>
                 </li>
                 <!-- Group Management -->
@@ -595,6 +579,12 @@ if($auth) {
                     </li>
                   </ul>
                 </li>
+                <!-- Threats -->
+                <li<?php if($scriptname === "threats.php"){ ?> class="active"<?php } ?>>
+                    <a href="threats.php">
+                        <i class="fa fa-exclamation-circle"></i> <span>Threats</span>
+                    </a>
+                </li>
                 <!-- Settings -->
                 <li<?php if($scriptname === "settings.php"){ ?> class="active"<?php } ?>>
                     <a href="settings.php">
@@ -643,12 +633,6 @@ if($auth) {
                     </a>
                 </li>
                 <?php } ?>
-                <!-- Donate -->
-                <li>
-                    <a href="https://pi-hole.net/donate/" rel="noopener" target="_blank">
-                        <i class="fab fa-fw fa-paypal"></i> <span>Donate</span>
-                    </a>
-                </li>
                  <!-- Docs -->
                  <li>
                     <a href="https://docs.pi-hole.net/" rel="noopener" target="_blank">
